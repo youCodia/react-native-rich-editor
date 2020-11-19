@@ -189,7 +189,7 @@ export default class RichTextEditor extends Component {
         const {html: viewHTML} = that.state;
         // webview dark theme bug
         const opacity = that.state.isInit ? 1 : 0;
-        const containerStyle = {height: this.state.height};
+
         return (
             <>
                 <WebView
@@ -197,7 +197,6 @@ export default class RichTextEditor extends Component {
                     scrollEnabled={false}
                     hideKeyboardAccessoryView={true}
                     keyboardDisplayRequiresUserAction={false}
-                    containerStyle={containerStyle}
                     {...rest}
                     ref={that.setRef}
                     onMessage={that.onMessage}
@@ -224,7 +223,7 @@ export default class RichTextEditor extends Component {
         const {useContainer, style} = this.props;
 
         if (useContainer) {
-            return <View style={[style]}>{this.renderWebView()}</View>;
+            return <View style={[style, {height}]}>{this.renderWebView()}</View>;
         }
         return this.renderWebView();
     }
